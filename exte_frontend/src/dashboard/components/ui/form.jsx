@@ -126,7 +126,7 @@ function FormMessage({
       id={formMessageId}
       className={cn("text-destructive text-sm", className)}
       {...props}>
-      {body}
+      {body || null}
     </p>
   );
 }

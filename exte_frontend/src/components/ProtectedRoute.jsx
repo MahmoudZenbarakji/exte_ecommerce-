@@ -8,7 +8,8 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" replace />
   }
   
-  return children
+  // Safely handle children - prevent null/undefined children from causing React Children error
+  return children || null
 }
 
 export default ProtectedRoute

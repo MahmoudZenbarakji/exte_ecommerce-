@@ -1,4 +1,4 @@
-import { Bars3Icon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { Menu as Bars3Icon, Bell as BellIcon, UserCircle as UserCircleIcon } from 'lucide-react'
 import { Button } from './components/ui/button'
 
 export default function Header({ setSidebarOpen }) {

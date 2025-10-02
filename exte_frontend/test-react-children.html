@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Children Error Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .success { background: #e6ffe6; border-color: #99ff99; }
+        .error { background: #ffe6e6; border-color: #ff9999; }
+        .warning { background: #fff3cd; border-color: #ffeaa7; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 React Children Error Test</h1>
+        <p>This test checks for the specific React Children error in production builds.</p>
+        
+        <div class="test-section">
+            <h3>📊 Build Information</h3>
+            <div id="build-info">Loading...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔍 React Children Test</h3>
+            <button class="test-button" onclick="testReactChildren()">Test React.Children</button>
+            <div id="children-test-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>📦 Chunk Analysis</h3>
+            <button class="test-button" onclick="analyzeChunks()">Analyze Chunks</button>
+            <div id="chunk-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🚨 Error Detection</h3>
+            <button class="test-button" onclick="detectErrors()">Detect Errors</button>
+            <div id="error-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔧 Production vs Development</h3>
+            <button class="test-button" onclick="compareBuilds()">Compare Builds</button>
+            <div id="build-comparison"></div>
+        </div>
+    </div>
+
+    <script>
+        // Build information
+        function updateBuildInfo() {
+            const buildInfo = document.getElementById('build-info');
+            const scripts = Array.from(document.scripts);
+            const isProduction = scripts.some(script => 
+                script.src && (script.src.includes('vendor-') || script.src.includes('chunk-'))
+            );
+            
+            buildInfo.innerHTML = `
+                <strong>Build Type:</strong> ${isProduction ? 'Production' : 'Development'}<br>
+                <strong>Scripts Count:</strong> ${scripts.length}<br>
+                <strong>Vendor Scripts:</strong> ${scripts.filter(s => s.src && s.src.includes('vendor-')).length}<br>
+                <strong>Source Maps:</strong> ${scripts.some(s => s.src && s.src.includes('.map')) ? 'Available' : 'Not Available'}<br>
+                <strong>Minified:</strong> ${scripts.some(s => s.src && s.src.includes('vendor-')) ? 'Yes' : 'No'}
+            `;
+        }
+
+        // Test React.Children specifically
+        function testReactChildren() {
+            const results = document.getElementById('children-test-results');
+            results.innerHTML = '<p>Testing React.Children...</p>';
+            
+            try {
+                if (typeof React === 'undefined') {
+                    results.innerHTML = '<div class="error"><strong>❌ React is not available</strong></div>';
+                    return;
+                }
+                
+                if (typeof React.Children === 'undefined') {
+                    results.innerHTML = '<div class="error"><strong>❌ React.Children is undefined</strong><br>This is the exact cause of the error!</div>';
+                    return;
+                }
+                
+                // Test React.Children methods
+                const childrenTests = {
+                    'React.Children.count': typeof React.Children.count,
+                    'React.Children.forEach': typeof React.Children.forEach,
+                    'React.Children.map': typeof React.Children.map,
+                    'React.Children.only': typeof React.Children.only,
+                    'React.Children.toArray': typeof React.Children.toArray
+                };
+                
+                const allMethodsAvailable = Object.values(childrenTests).every(method => method === 'function');
+                
+                if (allMethodsAvailable) {
+                    results.innerHTML = `
+                        <div class="success">
+                            <strong>✅ React.Children is fully available</strong><br>
+                            <pre>${JSON.stringify(childrenTests, null, 2)}</pre>
+                        </div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="warning">
+                            <strong>⚠️ Some React.Children methods are missing</strong><br>
+                            <pre>${JSON.stringify(childrenTests, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Error testing React.Children:</strong> ${error.message}<br>
+                        <pre>${error.stack}</pre>
+                    </div>
+                `;
+            }
+        }
+
+        // Analyze chunks
+        function analyzeChunks() {
+            const results = document.getElementById('chunk-results');
+            results.innerHTML = '<p>Analyzing chunks...</p>';
+            
+            try {
+                const scripts = Array.from(document.scripts);
+                const chunkAnalysis = {
+                    total: scripts.length,
+                    vendor: scripts.filter(s => s.src && s.src.includes('vendor-')).length,
+                    react: scripts.filter(s => s.src && s.src.includes('react')).length,
+                    misc: scripts.filter(s => s.src && s.src.includes('misc')).length,
+                    ui: scripts.filter(s => s.src && s.src.includes('ui')).length
+                };
+                
+                const chunkDetails = scripts.map(script => ({
+                    src: script.src,
+                    type: script.type,
+                    size: script.src ? 'Unknown' : 'Inline'
+                }));
+                
+                results.innerHTML = `
+                    <div class="success">
+                        <strong>📦 Chunk Analysis:</strong><br>
+                        <pre>${JSON.stringify(chunkAnalysis, null, 2)}</pre>
+                        <strong>Script Details:</strong><br>
+                        <pre>${JSON.stringify(chunkDetails, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Chunk Analysis Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Detect errors
+        function detectErrors() {
+            const results = document.getElementById('error-results');
+            results.innerHTML = '<p>Detecting errors...</p>';
+            
+            try {
+                const errors = [];
+                
+                // Check for React availability
+                if (typeof React === 'undefined') {
+                    errors.push('React is not available globally');
+                } else {
+                    if (typeof React.Children === 'undefined') {
+                        errors.push('React.Children is undefined - This is the exact cause of the error!');
+                    }
+                }
+                
+                // Check for multiple React instances
+                const reactInstances = [];
+                if (window.React) reactInstances.push('window.React');
+                if (typeof React !== 'undefined') reactInstances.push('global React');
+                
+                if (reactInstances.length > 1) {
+                    errors.push(`Multiple React instances: ${reactInstances.join(', ')}`);
+                }
+                
+                // Check for bundling issues
+                const scripts = Array.from(document.scripts);
+                const vendorScripts = scripts.filter(s => s.src && s.src.includes('vendor-'));
+                if (vendorScripts.length > 3) {
+                    errors.push(`Too many vendor chunks: ${vendorScripts.length}`);
+                }
+                
+                if (errors.length === 0) {
+                    results.innerHTML = '<div class="success"><strong>✅ No errors detected</strong></div>';
+                } else {
+                    results.innerHTML = `
+                        <div class="error">
+                            <strong>❌ Errors detected:</strong><br>
+                            <ul>${errors.map(error => `<li>${error}</li>`).join('')}</ul>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Error Detection Failed:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Compare builds
+        function compareBuilds() {
+            const results = document.getElementById('build-comparison');
+            results.innerHTML = '<p>Comparing builds...</p>';
+            
+            try {
+                const scripts = Array.from(document.scripts);
+                const isProduction = scripts.some(script => 
+                    script.src && (script.src.includes('vendor-') || script.src.includes('chunk-'))
+                );
+                
+                const analysis = {
+                    buildType: isProduction ? 'Production' : 'Development',
+                    minified: isProduction,
+                    sourceMaps: scripts.some(s => s.src && s.src.includes('.map')),
+                    chunkCount: scripts.filter(s => s.src && s.src.includes('vendor-')).length,
+                    totalSize: scripts.length
+                };
+                
+                results.innerHTML = `
+                    <div class="success">
+                        <strong>🔧 Build Comparison:</strong><br>
+                        <pre>${JSON.stringify(analysis, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Build Comparison Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        updateBuildInfo();
+        
+        // Auto-run tests
+        setTimeout(() => {
+            testReactChildren();
+            analyzeChunks();
+            detectErrors();
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

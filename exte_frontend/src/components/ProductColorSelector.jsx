@@ -165,10 +165,6 @@ const ProductColorSelector = ({
         case 'Escape':
           closeImageModal()
           break
-        case 'ArrowLeft':
-          event.preventDefault()
-          navigateToPreviousImage()
-          break
         case 'ArrowRight':
           event.preventDefault()
           navigateToNextImage()

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Error Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .debug-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error-info {
+            background: #ffe6e6;
+            border-color: #ff9999;
+        }
+        .success-info {
+            background: #e6ffe6;
+            border-color: #99ff99;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔍 React Error Debug Tool</h1>
+        <p>This tool helps identify the exact cause of the React Children error.</p>
+        
+        <div class="debug-section">
+            <h3>📊 Current Environment</h3>
+            <div id="env-info">Loading...</div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>🧪 React Version Test</h3>
+            <button class="test-button" onclick="testReactVersions()">Test React Versions</button>
+            <div id="react-test-results"></div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>🔧 Build Configuration Test</h3>
+            <button class="test-button" onclick="testBuildConfig()">Test Build Config</button>
+            <div id="build-test-results"></div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>📦 Chunk Analysis</h3>
+            <button class="test-button" onclick="analyzeChunks()">Analyze Chunks</button>
+            <div id="chunk-analysis"></div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>🚀 Production Build Test</h3>
+            <button class="test-button" onclick="testProductionBuild()">Test Production Build</button>
+            <div id="production-test-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Environment detection
+        function updateEnvironmentInfo() {
+            const envInfo = document.getElementById('env-info');
+            envInfo.innerHTML = `
+                <strong>User Agent:</strong> ${navigator.userAgent}<br>
+                <strong>URL:</strong> ${window.location.href}<br>
+                <strong>Protocol:</strong> ${window.location.protocol}<br>
+                <strong>Host:</strong> ${window.location.host}<br>
+                <strong>Timestamp:</strong> ${new Date().toISOString()}
+            `;
+        }
+
+        // Test React versions
+        function testReactVersions() {
+            const results = document.getElementById('react-test-results');
+            results.innerHTML = '<p>Testing React versions...</p>';
+            
+            try {
+                // Check if React is available
+                if (typeof React !== 'undefined') {
+                    results.innerHTML = `
+                        <div class="success-info">
+                            <strong>✅ React Available:</strong> ${React.version}<br>
+                            <strong>React.Children:</strong> ${typeof React.Children}<br>
+                            <strong>React.createElement:</strong> ${typeof React.createElement}
+                        </div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="error-info">
+                            <strong>❌ React Not Available</strong><br>
+                            This suggests a bundling or import issue.
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error-info">
+                        <strong>❌ React Error:</strong> ${error.message}<br>
+                        <pre>${error.stack}</pre>
+                    </div>
+                `;
+            }
+        }
+
+        // Test build configuration
+        function testBuildConfig() {
+            const results = document.getElementById('build-test-results');
+            results.innerHTML = '<p>Analyzing build configuration...</p>';
+            
+            try {
+                // Check for multiple React instances
+                const scripts = Array.from(document.scripts);
+                const reactScripts = scripts.filter(script => 
+                    script.src && script.src.includes('react')
+                );
+                
+                results.innerHTML = `
+                    <div class="success-info">
+                        <strong>📊 Script Analysis:</strong><br>
+                        <strong>Total Scripts:</strong> ${scripts.length}<br>
+                        <strong>React Scripts:</strong> ${reactScripts.length}<br>
+                        <strong>Script Sources:</strong><br>
+                        <pre>${scripts.map(s => s.src || 'inline').join('\n')}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error-info">
+                        <strong>❌ Build Config Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Analyze chunks
+        function analyzeChunks() {
+            const results = document.getElementById('chunk-analysis');
+            results.innerHTML = '<p>Analyzing JavaScript chunks...</p>';
+            
+            try {
+                // Get all script tags
+                const scripts = Array.from(document.scripts);
+                const chunkInfo = scripts.map(script => ({
+                    src: script.src,
+                    type: script.type,
+                    async: script.async,
+                    defer: script.defer
+                }));
+                
+                results.innerHTML = `
+                    <div class="success-info">
+                        <strong>📦 Chunk Analysis:</strong><br>
+                        <pre>${JSON.stringify(chunkInfo, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error-info">
+                        <strong>❌ Chunk Analysis Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test production build
+        function testProductionBuild() {
+            const results = document.getElementById('production-test-results');
+            results.innerHTML = '<p>Testing production build...</p>';
+            
+            try {
+                // Check for source maps
+                const hasSourceMaps = Array.from(document.scripts).some(script => 
+                    script.src && script.src.includes('.map')
+                );
+                
+                // Check for minification
+                const isMinified = Array.from(document.scripts).some(script => 
+                    script.src && (script.src.includes('vendor-') || script.src.includes('chunk-'))
+                );
+                
+                results.innerHTML = `
+                    <div class="success-info">
+                        <strong>🚀 Production Build Analysis:</strong><br>
+                        <strong>Source Maps Available:</strong> ${hasSourceMaps ? 'Yes' : 'No'}<br>
+                        <strong>Minified Build:</strong> ${isMinified ? 'Yes' : 'No'}<br>
+                        <strong>Build Type:</strong> ${isMinified ? 'Production' : 'Development'}
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error-info">
+                        <strong>❌ Production Test Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        updateEnvironmentInfo();
+        
+        // Auto-run basic tests
+        setTimeout(() => {
+            testReactVersions();
+            testBuildConfig();
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

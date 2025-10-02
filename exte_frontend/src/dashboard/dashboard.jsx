@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import { 
-  CubeIcon, 
-  TagIcon, 
-  FolderIcon, 
-  PercentBadgeIcon,
-  ShoppingCartIcon,
-  UsersIcon
-} from '@heroicons/react/24/outline'
+  Package as CubeIcon, 
+  Tag as TagIcon, 
+  Folder as FolderIcon, 
+  Percent as PercentBadgeIcon,
+  ShoppingCart as ShoppingCartIcon,
+  Users as UsersIcon
+} from 'lucide-react'
 import { useDashboardStatistics } from '../hooks/useDashboard'
 
 function classNames(...classes) {

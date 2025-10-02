@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Bars3Icon, XMarkIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { Menu as Bars3Icon, X as XMarkIcon, Heart as HeartIcon } from 'lucide-react'
 import { useCart, useAuth, useFavorites } from '../contexts.jsx'
 
 function classNames(...classes) {

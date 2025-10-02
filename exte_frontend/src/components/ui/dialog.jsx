@@ -12,7 +12,7 @@ export function Dialog({ children, open, onOpenChange }) {
 
   return (
     <DialogContext.Provider value={{ isOpen, setIsOpen: handleOpenChange }}>
-      {children}
+      {children || null}
     </DialogContext.Provider>
   )
 }
@@ -21,12 +21,12 @@ export function DialogTrigger({ children, asChild }) {
   const { setIsOpen } = useContext(DialogContext)
   
   if (asChild) {
-    return children
+    return children || null
   }
   
   return (
     <button onClick={() => setIsOpen(true)}>
-      {children}
+      {children || null}
     </button>
   )
 }
@@ -40,7 +40,7 @@ export function DialogContent({ children, className = '' }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setIsOpen(false)} />
       <div className={`relative bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4 ${className}`}>
-        {children}
+        {children || null}
       </div>
     </div>
   )
@@ -49,7 +49,7 @@ export function DialogContent({ children, className = '' }) {
 export function DialogHeader({ children, className = '' }) {
   return (
     <div className={`mb-4 ${className}`}>
-      {children}
+      {children || null}
     </div>
   )
 }
@@ -57,7 +57,7 @@ export function DialogHeader({ children, className = '' }) {
 export function DialogTitle({ children, className = '' }) {
   return (
     <h2 className={`text-lg font-semibold text-gray-900 ${className}`}>
-      {children}
+      {children || null}
     </h2>
   )
 }
@@ -65,7 +65,7 @@ export function DialogTitle({ children, className = '' }) {
 export function DialogDescription({ children, className = '' }) {
   return (
     <p className={`text-sm text-gray-600 mt-1 ${className}`}>
-      {children}
+      {children || null}
     </p>
   )
 }
@@ -73,7 +73,7 @@ export function DialogDescription({ children, className = '' }) {
 export function DialogFooter({ children, className = '' }) {
   return (
     <div className={`flex justify-end space-x-2 mt-6 ${className}`}>
-      {children}
+      {children || null}
     </div>
   )
 }

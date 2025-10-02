@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PlusIcon, PencilIcon, TrashIcon, PercentBadgeIcon } from '@heroicons/react/24/outline'
+import { Plus as PlusIcon, Pencil as PencilIcon, Trash2 as TrashIcon, Percent as PercentBadgeIcon } from 'lucide-react'
 import { Button } from './components/ui/button'
 import {Input} from './components/ui/input'
 import{Textarea} from"./components/ui/textarea"

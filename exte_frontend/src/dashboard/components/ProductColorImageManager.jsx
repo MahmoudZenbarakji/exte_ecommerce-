@@ -4,7 +4,7 @@ import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
-import { TrashIcon, PlusIcon, PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Trash2 as TrashIcon, Plus as PlusIcon, Image as PhotoIcon, X as XMarkIcon } from 'lucide-react'
 import { uploadAPI, productsAPI } from '../../services/api'
 import { validateImage } from '../../utils/imageCompression.js'
 

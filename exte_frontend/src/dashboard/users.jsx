@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { usersAPI } from '../services/api'
 import { 
-  UserIcon, 
-  EnvelopeIcon, 
-  PhoneIcon, 
-  CalendarIcon,
-  ShieldCheckIcon,
-  ShieldExclamationIcon,
-  PencilIcon,
-  TrashIcon,
-  EyeIcon
-} from '@heroicons/react/24/outline'
+  User as UserIcon, 
+  Mail as EnvelopeIcon, 
+  Phone as PhoneIcon, 
+  Calendar as CalendarIcon,
+  ShieldCheck as ShieldCheckIcon,
+  ShieldAlert as ShieldExclamationIcon,
+  Pencil as PencilIcon,
+  Trash2 as TrashIcon,
+  Eye as EyeIcon
+} from 'lucide-react'
 
 export default function Users() {
   const [users, setUsers] = useState([])

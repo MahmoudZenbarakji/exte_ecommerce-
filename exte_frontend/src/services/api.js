@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { getValidatedApiUrl, logApiConfig } from '../utils/apiConfig';
 
-// Get validated API URL
-const apiUrl = getValidatedApiUrl();
+// Get validated API URL - ensures API_URL never becomes undefined
+const API_URL = getValidatedApiUrl();
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: apiUrl,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

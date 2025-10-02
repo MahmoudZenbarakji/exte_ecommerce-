@@ -1,4 +1,5 @@
-import { forwardRef } from 'react'
+import React, { forwardRef } from 'react'
+import { safeForwardRef } from '../../utils/reactImportFix'
 
 const Card = forwardRef(({ className = '', ...props }, ref) => {
   return (

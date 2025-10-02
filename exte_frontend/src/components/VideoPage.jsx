@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { TrashIcon, PlusIcon, VideoCameraIcon } from '@heroicons/react/24/outline'
+import { Trash2 as TrashIcon, Plus as PlusIcon, Video as VideoCameraIcon } from 'lucide-react'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
@@ -288,6 +288,14 @@ function VideoPage() {
 }
 
 export default VideoPage
+
+
+
+
+
+
+
+
 
 
 

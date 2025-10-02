@@ -1,13 +1,13 @@
 import React from 'react';
 import { 
-  InformationCircleIcon, 
-  CheckCircleIcon, 
-  ExclamationTriangleIcon,
-  LightBulbIcon,
-  PhotoIcon,
-  TagIcon,
-  CubeIcon
-} from '@heroicons/react/24/outline';
+  Info as InformationCircleIcon, 
+  CheckCircle as CheckCircleIcon, 
+  AlertTriangle as ExclamationTriangleIcon,
+  Lightbulb as LightBulbIcon,
+  Image as PhotoIcon,
+  Tag as TagIcon,
+  Package as CubeIcon
+} from 'lucide-react';
 
 const AdminGuide = () => {
   return (
@@ -169,6 +169,14 @@ const AdminGuide = () => {
 };
 
 export default AdminGuide;
+
+
+
+
+
+
+
+
 
 
 

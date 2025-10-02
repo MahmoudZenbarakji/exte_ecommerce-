@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
 const Badge = forwardRef(({ className = '', variant = 'default', ...props }, ref) => {
   const variants = {

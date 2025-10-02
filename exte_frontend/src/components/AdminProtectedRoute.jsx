@@ -14,7 +14,8 @@ const AdminProtectedRoute = ({ children }) => {
     return <Navigate to="/admin/login" replace />
   }
   
-  return children
+  // Safely handle children - prevent null/undefined children from causing React Children error
+  return children || null
 }
 
 export default AdminProtectedRoute

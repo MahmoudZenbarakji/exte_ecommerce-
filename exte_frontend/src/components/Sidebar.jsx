@@ -2,15 +2,15 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
-  XMarkIcon,
-  UserIcon,
-  ShoppingBagIcon,
-  HeartIcon,
-  MagnifyingGlassIcon,
-  Bars3Icon,
-  ChevronRightIcon,
-  ChevronDownIcon
-} from '@heroicons/react/24/outline'
+  X as XMarkIcon,
+  User as UserIcon,
+  ShoppingBag as ShoppingBagIcon,
+  Heart as HeartIcon,
+  Search as MagnifyingGlassIcon,
+  Menu as Bars3Icon,
+  ChevronRight as ChevronRightIcon,
+  ChevronDown as ChevronDownIcon
+} from 'lucide-react'
 import { useCart, useAuth, useCategories, useFavorites } from '../contexts.jsx'
 
 function classNames(...classes) {

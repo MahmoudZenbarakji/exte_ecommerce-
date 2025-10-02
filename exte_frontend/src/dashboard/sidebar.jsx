@@ -2,16 +2,16 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
-  XMarkIcon,
-  HomeIcon,
-  FolderIcon,
-  TagIcon,
-  CubeIcon,
-  PercentBadgeIcon,
-  ShoppingBagIcon,
-  UsersIcon,
-  PlayIcon
-} from '@heroicons/react/24/outline'
+  X as XMarkIcon,
+  Home as HomeIcon,
+  Folder as FolderIcon,
+  Tag as TagIcon,
+  Package as CubeIcon,
+  Percent as PercentBadgeIcon,
+  ShoppingBag as ShoppingBagIcon,
+  Users as UsersIcon,
+  Play as PlayIcon
+} from 'lucide-react'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },

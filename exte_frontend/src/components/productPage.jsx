@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Heart, Minus, Plus, ShoppingBag, ArrowLeft } from 'lucide-react'
+import { Heart, Minus, Plus, ShoppingBag } from 'lucide-react'
 import {Button} from './ui/button'
 import { useCart, useAuth, useFavorites } from '../contexts.jsx'
 import { productsAPI } from '../services/api.js'
@@ -139,7 +139,6 @@ function ProductDetail() {
           onClick={() => navigate(-1)}
           className="flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8"
         >
-          <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </button>
 

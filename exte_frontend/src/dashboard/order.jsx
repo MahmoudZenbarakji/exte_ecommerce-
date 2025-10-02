@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { EyeIcon, PhoneIcon, MapPinIcon, UserIcon, CalendarIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline'
+import { Eye as EyeIcon, Phone as PhoneIcon, MapPin as MapPinIcon, User as UserIcon, Calendar as CalendarIcon, DollarSign as CurrencyDollarIcon } from 'lucide-react'
 import { Button } from './components/ui/button'
 import {Dialog,  DialogContent,
   DialogDescription,
