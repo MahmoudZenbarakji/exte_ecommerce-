@@ -42,7 +42,7 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
+    include: ['react', 'react-dom', 'react-router-dom','lucide-react'],
     exclude: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
   }
 })
