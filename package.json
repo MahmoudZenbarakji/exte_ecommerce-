@@ -1,0 +1,28 @@
+{
+  "name": "exte-fullstack-ecommerce",
+  "version": "1.0.0",
+  "description": "EXTE Full-Stack E-commerce Platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd exte_frontend && npm run dev",
+    "dev:backend": "cd backend_exte && npm run start:dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:frontend": "cd exte_frontend && npm run build",
+    "build:backend": "cd backend_exte && npm run build",
+    "deploy": "./deploy-fullstack.sh",
+    "deploy:frontend": "cd exte_frontend && vercel --prod",
+    "deploy:backend": "cd backend_exte && vercel --prod",
+    "install:all": "npm install && cd exte_frontend && npm install && cd ../backend_exte && npm install",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd exte_frontend && npm run test",
+    "test:backend": "cd backend_exte && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
