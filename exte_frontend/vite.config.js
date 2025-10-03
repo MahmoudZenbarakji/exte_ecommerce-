@@ -50,7 +50,6 @@ export default defineConfig({
       'react-router-dom',
       'lucide-react',
       'react/jsx-runtime',
-      'react/hooks',
       'react-dom/client'
     ],
     exclude: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
