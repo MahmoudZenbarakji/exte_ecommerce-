@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { User, Mail, Phone, Calendar, Edit, Save, X, Heart, Settings } from 'lucide-react'
+import { User, Mail, Phone, Calendar, Edit, Save, Heart, Settings } from 'lucide-react'
+import { FiX } from 'react-icons/fi'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
@@ -247,7 +248,7 @@ function Profile() {
                       disabled={saving}
                       className="flex items-center"
                     >
-                      <X className="h-4 w-4 mr-2" />
+                      <FiX className="h-4 w-4 mr-2" />
                       Cancel
                     </Button>
                   </div>

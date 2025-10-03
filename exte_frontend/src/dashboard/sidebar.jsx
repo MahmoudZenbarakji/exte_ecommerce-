@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
-  X as XMarkIcon,
   Home as HomeIcon,
   Folder as FolderIcon,
   Tag as TagIcon,
@@ -12,6 +11,7 @@ import {
   Users as UsersIcon,
   Play as PlayIcon
 } from 'lucide-react'
+import { FiX as XMarkIcon } from 'react-icons/fi'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },

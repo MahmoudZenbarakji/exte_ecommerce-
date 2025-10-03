@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, Search, ShoppingBag, User, Heart, X } from 'lucide-react'
+import { Menu, Search, ShoppingBag, User, Heart } from 'lucide-react'
+import { FiX } from 'react-icons/fi'
 import { useCart, useAuth } from '../contexts.jsx'
 
 function Header() {

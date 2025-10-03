@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
-  X as XMarkIcon,
   User as UserIcon,
   ShoppingBag as ShoppingBagIcon,
   Heart as HeartIcon,
@@ -11,6 +10,7 @@ import {
   ChevronRight as ChevronRightIcon,
   ChevronDown as ChevronDownIcon
 } from 'lucide-react'
+import { FiX as XMarkIcon } from 'react-icons/fi'
 import { useCart, useAuth, useCategories, useFavorites } from '../contexts.jsx'
 
 function classNames(...classes) {

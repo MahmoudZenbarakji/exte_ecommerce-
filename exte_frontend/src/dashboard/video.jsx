@@ -6,7 +6,8 @@ import { Textarea } from './components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select'
-import { Trash2, Plus, Play, Edit, Eye, Upload, FileVideo, X } from 'lucide-react'
+import { Trash2, Plus, Play, Edit, Eye, Upload, FileVideo } from 'lucide-react'
+import { FiX } from 'react-icons/fi'
 import { toast } from 'sonner'
 
 const VideoManagement = () => {
@@ -335,7 +336,7 @@ const VideoManagement = () => {
                             onClick={removeUploadedFile}
                             className="text-red-600 hover:text-red-700"
                           >
-                            <X className="h-4 w-4" />
+                            <FiX className="h-4 w-4" />
                           </Button>
                         </div>
                         

@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { forwardRef } from 'react';
-import { Package, Calendar, MapPin, CreditCard, Eye, Truck, CheckCircle, Clock, XCircle, Edit, X, AlertTriangle } from 'lucide-react'
+import { Package, Calendar, MapPin, CreditCard, Eye, Truck, CheckCircle, Clock, XCircle, Edit, AlertTriangle } from 'lucide-react'
+import { FiX } from 'react-icons/fi'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
@@ -545,7 +546,7 @@ function Orders() {
                             className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
                             onClick={() => handleCancelOrder(order)}
                           >
-                            <X className="h-4 w-4 mr-2" />
+                            <FiX className="h-4 w-4 mr-2" />
                             Cancel Order
                           </Button>
                         )}
