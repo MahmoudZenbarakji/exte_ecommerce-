@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   build: {
     target: 'es2020',
-    minify: 'terser',
+    minify: 'esbuild',
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -48,6 +48,18 @@ export default defineConfig({
     exclude: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
   },
   resolve: {
-    dedupe: ['react', 'react-dom']
+    dedupe: ['react', 'react-dom'],
+    alias: {
+      'react': 'react',
+      'react-dom': 'react-dom'
+    }
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+    'global': 'globalThis'
+  },
+  esbuild: {
+    jsx: 'automatic',
+    jsxImportSource: 'react'
   }
 })
