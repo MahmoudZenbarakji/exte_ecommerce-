@@ -12,6 +12,10 @@ export default defineConfig({
     target: 'es2020',
     minify: 'esbuild',
     sourcemap: true,
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true
+    },
     rollupOptions: {
       output: {
         manualChunks: (id) => {
@@ -22,7 +26,9 @@ export default defineConfig({
               id.includes('node_modules/@tanstack/react-query') || 
               id.includes('node_modules/react-hook-form') ||
               id.includes('node_modules/react-error-boundary') ||
-              id.includes('node_modules/lucide-react')) {
+              id.includes('node_modules/lucide-react') ||
+              id.includes('node_modules/framer-motion') ||
+              id.includes('node_modules/embla-carousel-react')) {
             return 'vendor-react'
           }
           // Separate UI libraries
@@ -43,7 +49,9 @@ export default defineConfig({
       'react-dom', 
       'react-router-dom',
       'lucide-react',
-      'react/jsx-runtime'
+      'react/jsx-runtime',
+      'react/hooks',
+      'react-dom/client'
     ],
     exclude: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
   },

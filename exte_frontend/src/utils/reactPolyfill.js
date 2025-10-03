@@ -9,10 +9,27 @@ if (typeof window !== 'undefined') {
   if (!React.forwardRef) {
     React.forwardRef = (Component) => {
       return (props, ref) => {
-        return <Component {...props} ref={ref} />;
+        return React.createElement(Component, { ...props, ref });
       };
     };
   }
+  
+  // Ensure React hooks are available
+  if (!React.useLayoutEffect) {
+    React.useLayoutEffect = React.useEffect;
+  }
+  
+  // Ensure all React hooks are properly exposed
+  const hooks = [
+    'useState', 'useEffect', 'useLayoutEffect', 'useContext', 
+    'useReducer', 'useCallback', 'useMemo', 'useRef', 'useImperativeHandle'
+  ];
+  
+  hooks.forEach(hook => {
+    if (!React[hook] && React[hook.replace('use', '')]) {
+      React[hook] = React[hook.replace('use', '')];
+    }
+  });
 }
 
 export default React;

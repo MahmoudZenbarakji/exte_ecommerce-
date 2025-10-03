@@ -1,5 +1,6 @@
 // Import React polyfill FIRST to ensure forwardRef is available
 import './utils/globalReactFix.js'
+import './utils/reactPolyfill.js'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
