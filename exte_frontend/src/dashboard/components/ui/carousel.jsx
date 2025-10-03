@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react"
+import  {React} from "react"
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowRight,ArrowLeft } from "lucide-react"
 

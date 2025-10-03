@@ -1,4 +1,5 @@
 import React from 'react';
+import { forwardRef } from 'react';
 import { 
   Info as InformationCircleIcon, 
   CheckCircle as CheckCircleIcon, 
