@@ -4,12 +4,12 @@ import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
 export function usePerformance() {
   const reportMetric = useCallback((metric) => {
     // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log(`[Performance] ${metric.name}:`, metric.value)
     }
     
     // Send to analytics service in production
-    if (process.env.NODE_ENV === 'production') {
+    if (import.meta.env.PROD) {
       // Example: Send to Google Analytics
       // gtag('event', metric.name, {
       //   value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
