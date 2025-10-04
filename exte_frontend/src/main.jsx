@@ -1,10 +1,12 @@
-// Import React polyfill FIRST to ensure forwardRef is available
-import './utils/globalReactFix.js'
-import './utils/reactPolyfill.js'
+// Import React first to avoid circular dependencies
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
+
+// Initialize React polyfills AFTER React is imported
+import './utils/globalReactFix.js'
+import './utils/reactPolyfill.js'
 import { initReactErrorDetection } from './utils/reactErrorDetector.js'
 import './utils/reactImportFix.js'
 import { runAllTests } from './utils/testForwardRef.js'
@@ -25,8 +27,15 @@ if (typeof window.React.forwardRef === 'undefined') {
 // Make sure React.forwardRef is available on the React object itself
 if (typeof React.forwardRef === 'undefined') {
   console.error('React.forwardRef is undefined! This will cause component errors.');
-  // Force assign forwardRef if it's missing
-  React.forwardRef = React.forwardRef || ((component) => component);
+  // Create a safe forwardRef implementation
+  React.forwardRef = (component) => {
+    const ForwardRefComponent = function(props, ref) {
+      return component(props, ref);
+    };
+    ForwardRefComponent.displayName = `ForwardRef(${component.displayName || component.name || 'Component'})`;
+    ForwardRefComponent.$$typeof = Symbol.for('react.forward_ref');
+    return ForwardRefComponent;
+  };
 }
 
 // Additional safety: ensure forwardRef is available on global React

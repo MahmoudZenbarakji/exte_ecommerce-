@@ -1,5 +1,12 @@
 // React polyfill for production builds
-import React from 'react';
+// Only import React if it's not already available globally
+let React;
+if (typeof window !== 'undefined' && window.React) {
+  React = window.React;
+} else {
+  // Import React only if not available globally
+  React = require('react');
+}
 
 // Ensure forwardRef is available globally for Lucide React
 if (typeof window !== 'undefined') {

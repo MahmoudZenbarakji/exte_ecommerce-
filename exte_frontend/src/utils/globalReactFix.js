@@ -1,8 +1,14 @@
 // Global React Fix for Vercel Deployment
 // This ensures React.forwardRef is always available globally
 
-// Import React first
-import React from 'react';
+// Only import React if it's not already available globally
+let React;
+if (typeof window !== 'undefined' && window.React) {
+  React = window.React;
+} else {
+  // Import React only if not available globally
+  React = require('react');
+}
 
 // Create a comprehensive forwardRef polyfill
 const createForwardRefPolyfill = () => {
