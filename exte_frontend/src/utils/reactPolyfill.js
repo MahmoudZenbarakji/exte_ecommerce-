@@ -1,12 +1,6 @@
 // React polyfill for production builds
-// Only import React if it's not already available globally
-let React;
-if (typeof window !== 'undefined' && window.React) {
-  React = window.React;
-} else {
-  // Import React only if not available globally
-  React = require('react');
-}
+// Import React - this will be available after main.jsx imports it
+import React from 'react';
 
 // Ensure forwardRef is available globally for Lucide React
 if (typeof window !== 'undefined') {
@@ -22,7 +16,7 @@ if (typeof window !== 'undefined') {
   }
   
   // Ensure React hooks are available
-  if (!React.useLayoutEffect) {
+  if (!React.useLayoutEffect && React.useEffect) {
     React.useLayoutEffect = React.useEffect;
   }
   
@@ -33,8 +27,12 @@ if (typeof window !== 'undefined') {
   ];
   
   hooks.forEach(hook => {
-    if (!React[hook] && React[hook.replace('use', '')]) {
-      React[hook] = React[hook.replace('use', '')];
+    // Only polyfill if the hook doesn't exist and the base hook exists
+    if (!React[hook]) {
+      const baseHook = hook.replace('use', '');
+      if (React[baseHook]) {
+        React[hook] = React[baseHook];
+      }
     }
   });
 }

@@ -1,28 +1,19 @@
 // React Import Fix Utility
 // This utility ensures React and forwardRef are properly available
 
+// Import React - this will be available after main.jsx imports it
+import React from 'react';
+
 // Ensure React is available globally
 if (typeof window !== 'undefined') {
-  // Import React if not already available
+  // Set React globally if not already set
   if (typeof window.React === 'undefined') {
-    try {
-      const React = require('react');
-      window.React = React;
-    } catch (error) {
-      console.warn('React not available globally, importing...');
-    }
+    window.React = React;
   }
   
   // Ensure forwardRef is available - CRITICAL for Vercel deployment
   if (window.React && typeof window.React.forwardRef === 'undefined') {
-    try {
-      const { forwardRef } = require('react');
-      window.React.forwardRef = forwardRef;
-    } catch (error) {
-      console.warn('forwardRef not available, this may cause issues');
-      // Fallback: create a basic forwardRef implementation
-      window.React.forwardRef = (component) => component;
-    }
+    window.React.forwardRef = React.forwardRef;
   }
   
   // Additional safety: ensure forwardRef is available on the global React object
