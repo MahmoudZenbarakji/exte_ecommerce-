@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Textarea } from './ui/textarea'
-import { useAuth } from '../contexts'
+import { useAuth } from '../contexts.jsx'
 
 function VideoPage() {
   const navigate = useNavigate()

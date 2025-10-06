@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useCart, useAuth } from '../contexts'
-import { ordersAPI } from '../services'
+import { useCart, useAuth } from '../contexts.jsx'
+import { ordersAPI } from '../services/api.js'
 import { Button } from './ui/button'
 
 function Checkout() {

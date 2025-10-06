@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu as Bars3Icon, Heart as HeartIcon } from 'lucide-react'
 import { FiX as XMarkIcon } from 'react-icons/fi'
-import { useCart, useAuth, useFavorites } from '../contexts'
+import { useCart, useAuth, useFavorites } from '../contexts.jsx'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

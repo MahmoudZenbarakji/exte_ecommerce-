@@ -11,7 +11,7 @@ import {
   ChevronDown as ChevronDownIcon
 } from 'lucide-react'
 import { FiX as XMarkIcon } from 'react-icons/fi'
-import { useCart, useAuth, useCategories, useFavorites } from '../contexts'
+import { useCart, useAuth, useCategories, useFavorites } from '../contexts.jsx'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

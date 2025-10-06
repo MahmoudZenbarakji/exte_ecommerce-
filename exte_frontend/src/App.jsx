@@ -48,7 +48,7 @@ import LoginAdmin from './dashboard/loginAdmin'
 import AdminProtectedRoute from './components/AdminProtectedRoute'
 import DashboardLayout from './dashboard/dashboardLayout'
 // Import contexts
-import { AuthProvider, CartProvider, CategoriesProvider, FavoritesProvider } from './contexts'
+import { AuthProvider, CartProvider, CategoriesProvider, FavoritesProvider } from './contexts.jsx'
 
 // Component to conditionally render header and footer
 function AppContent() {
