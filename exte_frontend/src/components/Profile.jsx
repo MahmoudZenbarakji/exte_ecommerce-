@@ -5,8 +5,8 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { useAuth } from '../contexts.jsx'
-import { authAPI } from '../services/api.js'
+import { useAuth } from '../contexts'
+import { authAPI } from '../services'
 
 function Profile() {
   const { user, isAuthenticated } = useAuth()

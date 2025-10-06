@@ -1,0 +1,11 @@
+// Service exports - Clean barrel file
+export { authAPI } from './auth'
+export { cartAPI } from './cart'
+export { favoritesAPI } from './favorites'
+export { productsAPI } from './products'
+export { uploadAPI } from './upload'
+export { categoriesAPI, subcategoriesAPI } from './categories'
+export { collectionsAPI } from './collections'
+export { ordersAPI } from './orders'
+export { usersAPI } from './users'
+export { dashboardAPI } from './dashboard'

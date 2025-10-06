@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts.jsx'
+import { useAuth } from '../contexts'
 import { Button } from './ui/button.jsx'
 
 function Register() {

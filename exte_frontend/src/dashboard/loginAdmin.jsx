@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './components/ui/button.jsx'
-import { useAuth } from '../contexts.jsx'
+import { useAuth } from '../contexts'
 
 function LoginPage() {
   const [email, setEmail] = useState('')

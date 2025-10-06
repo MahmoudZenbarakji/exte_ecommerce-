@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts.jsx'
-import { ordersAPI } from '../services/api.js'
+import { useAuth } from '../contexts'
+import { ordersAPI } from '../services'
 import { Button } from './ui/button'
 
 function OrderConfirmation() {

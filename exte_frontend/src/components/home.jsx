@@ -2,9 +2,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Heart, ShoppingCart, Plus } from 'lucide-react'
 import { Button } from './ui/button.jsx'
 import { useState, useEffect } from 'react'
-import { categoriesAPI, productsAPI, collectionsAPI } from '../services/api.js'
+import { categoriesAPI, productsAPI, collectionsAPI } from '../services'
 import ColorPicker from './ColorPicker.jsx'
-import { useCart, useAuth } from '../contexts.jsx'
+import { useCart, useAuth } from '../contexts'
 
 
 function Home() {

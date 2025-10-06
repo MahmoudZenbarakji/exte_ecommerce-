@@ -10,8 +10,8 @@ import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Label } from './ui/label'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
-import { useAuth } from '../contexts.jsx'
-import { ordersAPI } from '../services/api.js'
+import { useAuth } from '../contexts'
+import { ordersAPI } from '../services'
 
 function Orders() {
   const { isAuthenticated } = useAuth()

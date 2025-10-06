@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
-import { useCart } from '../contexts.jsx'
+import { useCart } from '../contexts'
 import { Button } from './ui/button'
 
 function Cart() {

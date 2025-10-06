@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { collectionsAPI, productsAPI } from '../services/api.js'
+import { collectionsAPI, productsAPI } from '../services'
 import { Heart, ShoppingCart, Plus, Eye } from 'lucide-react'
 import { Button } from './ui/button.jsx'
 import ColorPicker from './ColorPicker.jsx'
-import { useCart, useAuth } from '../contexts.jsx'
+import { useCart, useAuth } from '../contexts'
 
 export default function Collection() {
   const { collectionName } = useParams()

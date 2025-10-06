@@ -5,7 +5,7 @@ import { Input } from '@headlessui/react'
 import { Textarea } from './components/ui/textarea'
 import { Label } from './components/ui/label'
 import { categoriesAPI, subcategoriesAPI, uploadAPI } from '../services/api'
-import { useCategories } from '../contexts.jsx'
+import { useCategories } from '../contexts'
 
 
 import { Dialog,

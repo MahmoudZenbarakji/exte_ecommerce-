@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { Heart, Filter } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { productsAPI, categoriesAPI, subcategoriesAPI } from '../services/api.js'
+import { productsAPI, categoriesAPI, subcategoriesAPI } from '../services'
 import ColorPicker from './ColorPicker.jsx'
 import { useCart, useAuth, useFavorites } from '../contexts'
 import FavoriteIcon from './FavoriteIcon.jsx'
