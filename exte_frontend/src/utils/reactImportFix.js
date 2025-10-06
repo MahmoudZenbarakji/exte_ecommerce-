@@ -4,21 +4,25 @@
 // Import React - this will be available after main.jsx imports it
 import React from 'react';
 
-// Ensure React is available globally
+// Ensure React is available globally - with safety checks
 if (typeof window !== 'undefined') {
-  // Set React globally if not already set
-  if (typeof window.React === 'undefined') {
-    window.React = React;
-  }
-  
-  // Ensure forwardRef is available - CRITICAL for Vercel deployment
-  if (window.React && typeof window.React.forwardRef === 'undefined') {
-    window.React.forwardRef = React.forwardRef;
-  }
-  
-  // Additional safety: ensure forwardRef is available on the global React object
-  if (window.React && typeof window.React.forwardRef === 'undefined') {
-    window.React.forwardRef = (component) => component;
+  try {
+    // Set React globally if not already set
+    if (typeof window.React === 'undefined' && React) {
+      window.React = React;
+    }
+    
+    // Ensure forwardRef is available - CRITICAL for Vercel deployment
+    if (window.React && React && typeof window.React.forwardRef === 'undefined' && React.forwardRef) {
+      window.React.forwardRef = React.forwardRef;
+    }
+    
+    // Additional safety: ensure forwardRef is available on the global React object
+    if (window.React && typeof window.React.forwardRef === 'undefined') {
+      window.React.forwardRef = (component) => component;
+    }
+  } catch (error) {
+    console.warn('Failed to set up global React:', error);
   }
 }
 

@@ -28,10 +28,14 @@ const createForwardRefPolyfill = () => {
   };
 };
 
-// Apply the polyfill if forwardRef is missing
-if (typeof React.forwardRef === 'undefined') {
+// Apply the polyfill if forwardRef is missing - with safety check
+if (React && typeof React.forwardRef === 'undefined') {
   console.warn('React.forwardRef is undefined, applying polyfill...');
-  React.forwardRef = createForwardRefPolyfill();
+  try {
+    React.forwardRef = createForwardRefPolyfill();
+  } catch (error) {
+    console.error('Failed to apply forwardRef polyfill:', error);
+  }
 }
 
 // Ensure it's available globally
